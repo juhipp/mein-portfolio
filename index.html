@@ -1,13 +1,49 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>mein-portfolio</title>
+
+    <!-- ── Basis-SEO ─────────────────────────────────────────────── -->
+    <title>Julia Hipp – Frontend-Entwicklerin & Fotojournalistin</title>
+    <meta
+      name="description"
+      content="Julia Hipp: Frontend-Entwicklung mit Vue 3 & React sowie freiberufliche Pferde- und Tierfotografie für Redaktionen und Verlage" />
+    <link rel="canonical" href="https://juliahipp.de/" />
+
+    <!-- ── Open Graph (LinkedIn, Facebook, etc.) ────────────────── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://juliahipp.de/" />
+    <meta property="og:title" content="Julia Hipp – Frontend-Entwicklerin & Fotojournalistin" />
+    <meta
+      property="og:description"
+      content="Frontend-Entwicklung mit Vue 3 & React sowie freiberufliche Pferde- und Tierfotografie für Redaktionen und Verlage." />
+    <meta property="og:image" content="https://juliahipp.de/images/og-preview.jpg" />
+    <meta property="og:locale" content="de_DE" />
+
+    <!-- ── Twitter Card ──────────────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Julia Hipp – Frontend-Entwicklerin & Fotojournalistin" />
+    <meta
+      name="twitter:description"
+      content="Frontend-Entwicklung mit Vue 3 & React sowie freiberufliche Pferde- und Tierfotografie für Redaktionen, Verlage und Gestüte." />
+    <meta name="twitter:image" content="https://juliahipp.de/images/og-preview.jpg" />
+
+    <!-- ── Strukturierte Daten (JSON-LD) ─────────────────────────── -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Julia Hipp",
+        "jobTitle": "Frontend-Entwicklerin & Fotojournalistin",
+        "url": "https://juliahipp.de",
+        "sameAs": ["https://github.com/juliahipp", "https://linkedin.com/in/julia-hipp"]
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>
-   <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
