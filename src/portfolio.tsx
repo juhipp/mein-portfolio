@@ -6,12 +6,13 @@ import type { RefObject } from "react";
 interface Project {
   title: string;
   desc: string;
-  tags: string[];
-  year: string;
+  tags?: string[];
+  year?: string;
   color: string;
   accent: string;
   dark?: boolean;
   category?: string;
+  image?: string;
 }
 
 interface SkillItem {
@@ -62,44 +63,40 @@ const DEV_PROJECTS = [
 
 const PHOTO_PROJECTS: Project[] = [
   {
-    title: "Hamburger Hafen — Nachtschicht",
-    desc: "Reportage über Containerarbeiter:innen im Nachtbetrieb des HHLA-Terminals. Veröffentlicht in der ZEIT.",
-    tags: ["Reportage", "ZEIT", "2024"],
-    year: "2024",
+    title: "Archiv mit über 50.000 Bildern ",
+    desc: "25 Jahre hinter der Kamera,  50.000+ Bilder, thematisch sortiert, für Anfragen von Redaktionen und Verlage.",
+    tags: ["Archiv", "seit 2001", "Kategorisiert"],
     color: "#1a1a1a",
-    accent: "#f5f5f0",
+    accent: "#ff8800",
     dark: true,
-    category: "Reportage",
+    image: "/images/Fotocollage.jpg"
   },
   {
-    title: "Klimaprotest — Berlin 2024",
-    desc: "Dokumentation der Letzten-Generation-Blockaden rund um den Berliner Ring. 3-teilige Strecke im Spiegel.",
-    tags: ["Dokumentation", "Spiegel", "2024"],
-    year: "2024",
-    color: "#2a1a0a",
-    accent: "#f5e8d0",
+    title: "Fotoreportage Nordlandshest",
+    desc: "Unterwegs zu einer der seltensten Pferderassen Europas, dabei enstand eine sechsseitige Strecke über die Nordlandshest in der Cavallo.",
+    tags: ["Fotoreportage", "Cavallo", "2026"],
+    color: "#1a1a1a",
+    accent: "#2cff08",
     dark: true,
-    category: "Dokumentation",
+    image: "/images/norge.jpg"
   },
   {
-    title: "Zwischen den Zügen",
-    desc: "Langzeitprojekt über Obdachlosigkeit in deutschen Bahnhöfen — ausgestellt im Kunsthaus Hamburg.",
-    tags: ["Langzeitprojekt", "Ausstellung", "2023"],
-    year: "2023",
-    color: "#0a1a2a",
-    accent: "#d0e8f5",
+    title: "Fotobetreuung für Gestüte",
+    desc: "Seit 2011 betreue ich fotografisch das Haflingergestüt Padenstedt, für Hengstportraits, Stuten/Fohlen und ihren jährlichen Katalog.", 
+    tags: ["Padenstedt", "Hengstpräsentation", "seit 2011"],
+    color: "#1a1a1a",
+    accent: "#ff008c",
     dark: true,
-    category: "Fine Art",
+   image: "/images/pp.jpg"
   },
   {
-    title: "Refugees Welcome?",
-    desc: "Porträtserie über geflüchtete Familien in Erstaufnahmeeinrichtungen — nominiert für den DJV-Preis.",
-    tags: ["Portrait", "DJV-Nominierung", "2023"],
-    year: "2023",
-    color: "#1a0a1a",
-    accent: "#f0d0f5",
+    title: "Shootings für Privat",
+    desc: "Individuelle private Fototermine, ob Portrait, Reportage-Stil oder freie Bildidee, nur das Pferd oder gemeinsam mit dem Menschen .",
+    tags: ["Privatshootings", "Individuell", "Flexibel"],
+    color: "#1a1a1a",
+    accent: "#00ffe1",
     dark: true,
-    category: "Portrait",
+   image: "/images/lena.jpg"
   },
 ];
 
@@ -112,9 +109,13 @@ const DEV_SKILLS: SkillItem[] = [
 ];
 
 
-const TOOLS = ["Figma", "Git", "Jest", "Vite", "GraphQL", "Vercel", "Lightroom", "Capture One", "Sony Alpha", "DPA-Richtlinien"];
+const TOOLS = ["VS Code", "Git", "Jira", "Nextcloud", "Adobe Photoshop", "Canon", "Englisch (flüssig)", "KI Tools", "Typo3", "WordPress", "Lightroom", "Canva", "Camera RAW" ];
 
 
+const SOCIAL_LINKS = [
+  { label: "GitHub", url: "https://github.com/juliahipp" }, 
+  { label: "LinkedIn", url: "https://linkedin.com/in/julia-hipp" },
+];
 
 
 const NAV_ITEMS = ["Über mich", "Praxis", "Kenntnisse", "Kontakt"];
@@ -286,13 +287,55 @@ const globalCSS = `
   }
   .card-dev:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.10); }
   .card-photo {
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 2px solid var(--accent-color, transparent);
     box-shadow: 0 2px 12px rgba(0,0,0,0.15);
     position: relative;
     overflow: hidden;
+    padding: 0; 
+    display: flex;
+    flex-direction: column;
+    height: 100%;  
+    gap: 0;
   }
   .card-photo:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.35); }
+.card-photo-image {
+height: 180px;  
+            
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.card-photo-image img {
+   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.card-photo:hover .card-photo-image img {
+  transform: scale(1.04);
+}
+.card-photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  font-family: 'DM Mono', monospace;
+}
 
+.card-photo-content {
+flex: 1;              /* nimmt den Rest ein */
+  display: flex;
+  flex-direction: column;
+  padding: 14px 28px 24px;  
+  gap: 14px;
+  min-height: 0;   
+}
   /* Tags */
   .tag {
     font-size: 11px;
@@ -645,28 +688,37 @@ function DevCard({ project, index }: { project: Project; index: number }) {
     </div>
   );
 }
-
 function PhotoCard({ project, index }: { project: Project; index: number }) {
   const [ref, visible] = useInView();
   return (
     <div
       ref={ref}
       className={`card card-photo fade-in ${visible ? "visible" : "hidden"}`}
-      style={{ background: project.color, transitionDelay: `${index * 0.1}s` }}
+      style={{
+        transitionDelay: `${index * 0.1}s`,
+        // @ts-ignore – CSS custom property
+        "--accent-color": project.accent,
+        boxShadow: `0 2px 12px rgba(0,0,0,0.15), 0 0 16px ${project.color}22`, // dezenter Neon-Glow
+      }}
     >
-      <div style={{ position: "absolute", top: 0, right: 0, width: 120, height: 120, borderRadius: "0 16px 0 100%", background: "rgba(255,255,255,0.04)" }} />
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-        <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", padding: "4px 10px", borderRadius: 20, border: "1px solid rgba(255,255,255,0.15)" }}>
-          {project.category}
-        </span>
-        <span style={{ fontSize: 12, color: "rgba(255,255,255,0.35)", fontFamily: "'DM Mono', monospace" }}>{project.year}</span>
+      {/* Bildbereich */}
+      <div className="card-photo-image" style={{ background: "rgb(26, 26, 26)" }}>
+        {project.image ? (
+          <img src={project.image} alt={project.title} loading="lazy" />
+        ) : (
+          <span className="card-photo-placeholder">Bild folgt</span>
+        )}
       </div>
-      <div>
-        <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, color: "rgba(255,255,255,0.92)", letterSpacing: "-0.02em" }}>{project.title}</h3>
-        <p style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}>{project.desc}</p>
-      </div>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "auto" }}>
-        {project.tags.map(t => <Tag key={t} label={t} color={project.color} accent={project.accent} dark />)}
+
+      {/* Textbereich */}
+      <div className="card-photo-content" style={{ background: "rgb(26, 26, 26)" }}>
+        <div>
+          <h3 style={{ fontSize: 18, fontWeight: 700, marginBottom: 8, color: "rgba(255,255,255,0.92)", letterSpacing: "-0.02em" }}>{project.title}</h3>
+          <p style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", lineHeight: 1.65 }}>{project.desc}</p>
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: "auto" }}>
+          {project.tags.map(t => <Tag key={t} label={t} color={project.color} accent="rgb(26,26,26)" dark />)}
+        </div>
       </div>
     </div>
   );
@@ -727,7 +779,7 @@ export default function Portfolio() {
           maxWidth: 1000, margin: "0 auto",
           backgroundColor: "#ffffff",
         }}>
-          <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: "-0.02em", background: "#ffff62", padding: "4px 8px" }}>lena.dev</span>
+          <span style={{ fontWeight: 700, fontSize: 16, letterSpacing: "-0.02em", background: "#ffff62", padding: "4px 8px" }}>julia.hipp</span>
           <div className="desktop-nav">
             {NAV_ITEMS.map(n => (
               <span key={n} className="nav-link" onClick={() => scrollTo(n.toLowerCase().replace(" ", "-"))}>
@@ -740,7 +792,19 @@ export default function Portfolio() {
         onClick={() => setMenuOpen(!menuOpen)}
       >
         <span />
-        <span />
+        <span /><div style={{ display: "flex", gap: 20, justifyContent: "center", marginTop: 32 }}>
+  {SOCIAL_LINKS.map(({ label, url }) => (
+    < a
+      key={label}
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="social-link"
+    >
+      {label}
+    </a>
+  ))}
+</div>
         <span />
       </button>
         </nav>
@@ -810,17 +874,11 @@ export default function Portfolio() {
           {tab === "photo" && (
             <>
               <p style={{ fontSize: 14, color: "#888", marginBottom: 24, lineHeight: 1.65 }}>
-                Neben meiner Arbeit als Entwicklerin fotografiere ich freiberuflich für Printmedien und Agenturen. Meine Schwerpunkte sind soziale Reportage und Dokumentarfotografie.
+               Neben meiner Arbeit als Entwicklerin fotografiere ich freiberuflich für Pferdemagazine und Buchverlage im In- und Ausland. Meine Schwerpunkte sind Pferde-, und Tierfotografie für Redaktionen und privat Personen.
+
               </p>
               <div className="grid-2">
                 {PHOTO_PROJECTS.map((p, i) => <PhotoCard key={p.title} project={p} index={i} />)}
-              </div>
-              <div style={{ marginTop: 28, padding: "20px 24px", borderRadius: 12, background: "#fff", border: "1px solid #e8e8e8", display: "flex", alignItems: "center", gap: 16 }}>
-                <span style={{ fontSize: 24 }}>🏆</span>
-                <div>
-                  <p style={{ fontSize: 14, fontWeight: 600, color: "#111", marginBottom: 2 }}>DJV-Nachwuchsförderpreis 2023 — Nominierung</p>
-                  <p style={{ fontSize: 13, color: "#888" }}>Deutscher Journalisten-Verband, Kategorie Fotoreportage</p>
-                </div>
               </div>
             </>
           )}
@@ -876,7 +934,19 @@ export default function Portfolio() {
         {/* KONTAKT */}
         <section id="kontakt" className="section" style={{ display: "flex", flexDirection: "row" }}>
 
-          <div>left</div>
+          <div style={{ flex: "0 0 260px" }}>
+            <img
+              src="/images/julia294.jpg"
+              alt="Julia Hipp"
+              style={{
+                width: "100%",
+                aspectRatio: "3/4",
+                objectFit: "cover",
+                borderRadius: 16,
+                border: "2px solid #ff008c"
+              }}
+            />
+          </div>
           <div style={{ textAlign: "right" }}>
 
             <p className="section-label">Lass uns reden</p>
@@ -889,8 +959,16 @@ export default function Portfolio() {
             </p>
             <a href="mailto:>hallo@juliahipp.de" className="btn btn-primary">hallo@juliahipp.de</a>
             <div style={{ display: "flex", gap: 20, justifyContent: "center", marginTop: 32 }}>
-              {["GitHub", "LinkedIn", "Instagram"].map(l => (
-                <span key={l} className="social-link">{l}</span>
+              {SOCIAL_LINKS.map(({ label, url }) => (
+                < a
+                  key={label}
+                  href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-link"
+                >
+                  {label}
+                </a>
               ))}
             </div>
           </div>
@@ -898,8 +976,8 @@ export default function Portfolio() {
 
         {/* FOOTER */}
         <footer style={{ borderTop: "1px solid #e8e8e8", padding: "24px 32px", display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 13, color: "#aaa" }}>
-          <span>© 2025 Lena Maier</span>
-          <span style={{ fontFamily: "'DM Mono', monospace" }}>Code & Kamera ♥</span>
+          <span>© 2026 Julia Hipp & Claude Code</span>
+  
         </footer>
 
       </div>
