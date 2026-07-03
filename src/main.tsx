@@ -1,10 +1,10 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
 
-import Portfolio from './portfolio'
+import Portfolio from "./portfolio";
 
-createRoot(document.getElementById('app')!).render(
+createRoot(document.getElementById("app")!).render(
   <StrictMode>
     <Portfolio />
-  </StrictMode>
-)
+  </StrictMode>,
+);

@@ -66,7 +66,7 @@ const PHOTO_PROJECTS: Project[] = [
     color: "#1a1a1a",
     accent: "#ff8800",
     dark: true,
-    image: "/images/Fotocollage.jpg",
+    image: "/images/Fotocollage.webp",
   },
   {
     title: "Fotoreportage Nordlandshest",
@@ -75,7 +75,7 @@ const PHOTO_PROJECTS: Project[] = [
     color: "#1a1a1a",
     accent: "#2cff08",
     dark: true,
-    image: "/images/norge.jpg",
+    image: "/images/norge.webp",
   },
   {
     title: "Fotobetreuung für Gestüte",
@@ -84,7 +84,7 @@ const PHOTO_PROJECTS: Project[] = [
     color: "#1a1a1a",
     accent: "#ff008c",
     dark: true,
-    image: "/images/pp.jpg",
+    image: "/images/pp.webp",
   },
   {
     title: "Shootings für Privat",
@@ -93,7 +93,7 @@ const PHOTO_PROJECTS: Project[] = [
     color: "#1a1a1a",
     accent: "#00ffe1",
     dark: true,
-    image: "/images/lena.jpg",
+    image: "/images/lena.webp",
   },
 ];
 
@@ -109,6 +109,7 @@ const TOOLS = [
   "VS Code",
   "Git",
   "Jira",
+  "Vercel",
   "Nextcloud",
   "Adobe Photoshop",
   "Canon",
@@ -739,7 +740,11 @@ function PhotoCard({ project, index }: { project: Project; index: number }) {
       }}>
       {/* Bildbereich */}
       <div className="card-photo-image" style={{ background: "rgb(26, 26, 26)" }}>
-        {project.image ? <img src={project.image} alt={project.title} loading="lazy" /> : <span className="card-photo-placeholder">Bild folgt</span>}
+        {project.image ? (
+          <img src={project.image} alt={project.title} loading="lazy" width={400} height={180} />
+        ) : (
+          <span className="card-photo-placeholder">Bild folgt</span>
+        )}
       </div>
 
       {/* Textbereich */}
@@ -969,8 +974,10 @@ export default function Portfolio() {
         <section id="kontakt" className="section contact-section">
           <div className="contact-image">
             <img
-              src="/images/julia294.jpg"
+              src="/images/julia294.webp"
               alt="Julia Hipp"
+              width={260}
+              height={347}
               style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", borderRadius: 16, border: "2px solid #ff008c" }}
             />
           </div>
