@@ -1,8 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import type { RefObject } from "react";
 
-// ── Types ──────────────────────────────────────────────────────────────────
-
 interface Project {
   title: string;
   desc: string;
@@ -20,8 +18,6 @@ interface SkillItem {
   level: number;
   color: string;
 }
-
-// ── Data ───────────────────────────────────────────────────────────────────
 
 const DEV_PROJECTS: Project[] = [
   {
@@ -60,8 +56,8 @@ const DEV_PROJECTS: Project[] = [
 
 const PHOTO_PROJECTS: Project[] = [
   {
-    title: "Archiv mit über 50.000 Bildern ",
-    desc: "25 Jahre hinter der Kamera,  50.000+ Bilder, thematisch sortiert, für Anfragen von Redaktionen und Verlage.",
+    title: "Archiv mit über 20.000 Bildern ",
+    desc: "25 Jahre hinter der Kamera,  20.000+ Bilder, thematisch sortiert, für Anfragen von Redaktionen und Verlage.",
     tags: ["Archiv", "seit 2001", "Kategorisiert"],
     color: "#1a1a1a",
     accent: "#ff8800",
@@ -129,8 +125,6 @@ const SOCIAL_LINKS = [
 
 const NAV_ITEMS = ["Über mich", "Praxis", "Kenntnisse", "Kontakt"];
 
-// ── Global CSS ─────────────────────────────────────────────────────────────
-
 const globalCSS = `
   @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Mono&display=swap');
 
@@ -170,9 +164,6 @@ const globalCSS = `
     text-decoration: none;
   }
 
-  /* ── Typography (zentrale Textstile, statt Inline-Styles) ────────────── */
-
-  /* Große Section-Überschriften (Praxis, Skills) */
   .heading-lg {
     font-size: clamp(28px, 4vw, 40px);
     font-weight: 700;
@@ -180,7 +171,6 @@ const globalCSS = `
     color: #0a0a0a;
   }
 
-  /* Sehr große Headlines (Hero, Kontakt) */
   .heading-xl {
     font-weight: 700;
     letter-spacing: -0.04em;
@@ -188,7 +178,6 @@ const globalCSS = `
     line-height: 1.1;
   }
 
-  /* Fließtext-Absätze */
   .text-body {
     font-size: 16px;
     color: #666;
@@ -200,14 +189,12 @@ const globalCSS = `
     line-height: 1.65;
   }
 
-  /* Kleine Meta-/Mono-Texte (Jahreszahlen, Prozentwerte) */
   .text-mono-sm {
     font-size: 12px;
     color: #999;
     font-family: 'DM Mono', monospace;
   }
 
-  /* Karten-Titel (DevCard / PhotoCard) */
   .card-title {
     font-size: 18px;
     font-weight: 700;
@@ -224,7 +211,6 @@ const globalCSS = `
   .card-desc-light { color: #555; }
   .card-desc-dark { color: rgba(255,255,255,0.55); }
 
-  /* Navigation */
   .nav-link {
     cursor: pointer;
     font-size: 14px;
@@ -234,7 +220,6 @@ const globalCSS = `
   }
   .nav-link:hover { color: #111; }
 
-  /* Buttons */
   .btn {
     display: inline-block;
     padding: 14px 32px;
@@ -292,7 +277,6 @@ const globalCSS = `
   .btn-outline { background: transparent; border: 1.5px solid #1a1a1a; color: #111; }
   .btn-outline:hover { background: #111; color: #fff; }
 
-  /* Tabs */
   .tab {
     padding: 9px 22px;
     border-radius: 50px;
@@ -307,7 +291,6 @@ const globalCSS = `
   .tab:hover { border-color: #aaa; color: #333; }
   .tab.active { background: #111; color: #fff; border-color: #111; }
 
-  /* Layout */
   .section {
     padding: 80px 24px;
     max-width: 900px;
@@ -320,7 +303,6 @@ const globalCSS = `
     gap: 20px;
   }
 
-  /* Cards */
   .card {
     border-radius: 16px;
     padding: 28px 28px 24px;
@@ -387,7 +369,6 @@ const globalCSS = `
     min-height: 0;
   }
 
-  /* Tags */
   .tag {
     font-size: 11px;
     font-weight: 600;
@@ -403,7 +384,6 @@ const globalCSS = `
     border: 1px solid rgba(255,255,255,0.15);
   }
 
-  /* Section label */
   .section-label {
     font-size: 12px;
     font-weight: 600;
@@ -413,7 +393,6 @@ const globalCSS = `
     margin-bottom: 12px;
   }
 
-  /* Skill bar */
   .skill-bar-bg {
     background: #e8e8e8;
     border-radius: 4px;
@@ -426,7 +405,6 @@ const globalCSS = `
     transition: width 1s cubic-bezier(.4,0,.2,1);
   }
 
-  /* Tool pill */
   .tool-pill {
     padding: 7px 16px;
     border-radius: 50px;
@@ -436,13 +414,11 @@ const globalCSS = `
     font-weight: 500;
   }
 
-  /* Colors */
   .neon-green { color: #2cff08; }
   .neon-pink { color: #ff00c8; }
   .neon-turquoise { color: #00ffe1; }
   .neon-orange { color: #ff8800; }
 
-  /* Social link */
   .social-link {
     font-size: 14px;
     color: #888;
@@ -452,16 +428,11 @@ const globalCSS = `
   }
   .social-link:hover { color: #111; }
 
-  /* Fade-in animation */
   .fade-in {
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
   .fade-in.hidden { opacity: 0; transform: translateY(32px); }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-  /* ─────────────────────────────────────────
-     BURGER MENU
-  ───────────────────────────────────────── */
 
   .burger {
     width: 46px;
@@ -531,10 +502,6 @@ const globalCSS = `
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  /* ─────────────────────────────────────────
-     RESPONSIVE NAVIGATION
-  ───────────────────────────────────────── */
-
   .desktop-nav {
     display: flex;
     gap: 32px;
@@ -591,8 +558,6 @@ const globalCSS = `
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* ── Kontakt-Sektion (mobile first) ────────────────────────────────── */
-
   .contact-section {
     display: flex;
     flex-direction: column;
@@ -629,8 +594,6 @@ const globalCSS = `
     }
   }
 
-  /* ── Skills-Bereich (mobile first) ─────────────────────────────────── */
-
   .skills-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -644,8 +607,6 @@ const globalCSS = `
     }
   }
 `;
-
-// ── Hooks ──────────────────────────────────────────────────────────────────
 
 function useInView(threshold = 0.15): [RefObject<HTMLDivElement>, boolean] {
   const ref = useRef<HTMLDivElement>(null);
@@ -738,7 +699,6 @@ function PhotoCard({ project, index }: { project: Project; index: number }) {
         "--accent-color": project.accent,
         boxShadow: `0 2px 12px rgba(0,0,0,0.15), 0 0 16px ${project.color}22`,
       }}>
-      {/* Bildbereich */}
       <div className="card-photo-image" style={{ background: "rgb(26, 26, 26)" }}>
         {project.image ? (
           <img src={project.image} alt={project.title} loading="lazy" width={400} height={180} />
@@ -746,8 +706,6 @@ function PhotoCard({ project, index }: { project: Project; index: number }) {
           <span className="card-photo-placeholder">Bild folgt</span>
         )}
       </div>
-
-      {/* Textbereich */}
       <div className="card-photo-content" style={{ background: "rgb(26, 26, 26)" }}>
         <div>
           <h3 className="card-title card-title-dark">{project.title}</h3>
@@ -801,7 +759,6 @@ export default function Portfolio() {
       <style>{globalCSS}</style>
 
       <div style={{ minHeight: "100vh", background: "#FAFAF8", maxWidth: 1000, margin: "0 auto" }}>
-        {/* NAV */}
         <nav
           style={{
             position: "fixed",
@@ -851,8 +808,6 @@ export default function Portfolio() {
             ))}
           </div>
         )}
-
-        {/* HERO */}
         <div
           id="über-mich"
           style={{
@@ -896,8 +851,6 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
-
-        {/* PROJEKTE */}
         <section id="praxis" className="section">
           <p className="section-label">Berufliche Stationen</p>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16, marginBottom: 36 }}>
@@ -934,8 +887,6 @@ export default function Portfolio() {
             </>
           )}
         </section>
-
-        {/* SKILLS */}
         <div style={{ background: "#fff", borderTop: "1px solid #e8e8e8", borderBottom: "1px solid #e8e8e8" }}>
           <section id="kenntnisse" className="section">
             <p className="section-label">Mein Werkzeugkasten</p>
@@ -970,7 +921,6 @@ export default function Portfolio() {
           </section>
         </div>
 
-        {/* KONTAKT */}
         <section id="kontakt" className="section contact-section">
           <div className="contact-image">
             <img
@@ -992,8 +942,8 @@ export default function Portfolio() {
               </span>
             </h2>
             <p className="text-body" style={{ padding: "36px 0" }}>
-              Ob Web-Projekt, Foto-Auftrag oder beides zusammen — <br />
-              ich freue mich über spannende Anfragen und neue Kooperationen.
+              Ob Web-Projekt, Foto-Auftrag oder beides zusammen, <br />
+              ich freue mich über spannende Anfragen und neue Kooperationen, Raum Hamburg oder remote.
             </p>
             <a href="mailto:hallo@juliahipp.de" className="btn btn-primary">
               hallo@juliahipp.de
@@ -1007,8 +957,6 @@ export default function Portfolio() {
             </div>
           </div>
         </section>
-
-        {/* FOOTER */}
         <footer
           style={{
             borderTop: "1px solid #e8e8e8",
