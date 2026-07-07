@@ -852,7 +852,7 @@ export default function Portfolio() {
           </div>
         </div>
         <section id="praxis" className="section">
-          <p className="section-label">Berufliche Stationen</p>
+          <p className="section-label">Berufliche Statione</p>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: 16, marginBottom: 36 }}>
             <h2 className="heading-lg">Praxis</h2>
             <div style={{ display: "flex", gap: 8 }}>
